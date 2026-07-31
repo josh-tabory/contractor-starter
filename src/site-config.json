@@ -1,0 +1,22 @@
+{
+  "businessName": "Apex Roofing & Repair",
+  "tagline": "Quality Roofing Solutions Built to Last",
+  "phone": "(555) 234-5678",
+  "email": "contact@apexroofingdemo.com",
+  "city": "Austin, TX",
+  "primaryColor": "#1e40af",
+  "services": [
+    {
+      "title": "Residential Roof Replacement",
+      "description": "Full tear-offs, architectural shingles, and metal roofing installed with lifetime warranties."
+    },
+    {
+      "title": "Emergency Leak Repair",
+      "description": "Fast response times for storm damage, missing shingles, and sudden leaks."
+    },
+    {
+      "title": "Gutter Installation & Care",
+      "description": "Seamless aluminum gutters and leaf guards designed for maximum drainage."
+    }
+  ]
+}
