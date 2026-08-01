@@ -3,6 +3,7 @@ import '../styles/global.css';
 import siteConfig from '../site-config.json';
 import MobileCallBar from '../components/MobileCallBar.astro';
 import QuoteForm from '../components/QuoteForm.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
 ---
 
 <html lang="en">
@@ -53,6 +54,10 @@ import QuoteForm from '../components/QuoteForm.astro';
 			))}
 		</div>
 		</section>
+
+		<!-- Before After Slider -->
+		<BeforeAfter />
+		
 		<!-- Quote Form Component -->
 		<QuoteForm />
 	</main>

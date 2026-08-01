@@ -1,0 +1,82 @@
+---
+interface Props {
+  beforeImage?: string;
+  afterImage?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+}
+
+const {
+  beforeImage = "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=80",
+  afterImage = "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1000&q=80",
+  beforeLabel = "Before",
+  afterLabel = "After Repair"
+} = Astro.props;
+---
+
+<section class="max-w-5xl mx-auto py-12 px-6">
+  <div class="text-center mb-8">
+    <h2 class="text-3xl font-black text-slate-900">Recent Project Results</h2>
+    <p class="text-slate-600 mt-2 text-sm">Drag the slider to see the quality of our craftsmanship.</p>
+  </div>
+
+  <div class="relative w-full max-w-3xl mx-auto aspect-[16/9] overflow-hidden rounded-2xl shadow-xl border border-slate-200 select-none group" id="before-after-slider">
+    <img src={afterImage} alt="After completion" class="absolute inset-0 w-full h-full object-cover" />
+    <span class="absolute top-4 right-4 bg-slate-900/80 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm z-10">
+      {afterLabel}
+    </span>
+
+    <div class="before-image-container absolute inset-0 w-1/2 overflow-hidden z-10">
+      <img src={beforeImage} alt="Before work started" class="absolute inset-0 w-full h-full object-cover max-w-none" id="before-img" />
+      <span class="absolute top-4 left-4 bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full z-20">
+        {beforeLabel}
+      </span>
+    </div>
+
+    <input 
+      type="range" 
+      min="0" 
+      max="100" 
+      value="50" 
+      aria-label="Before and after image comparison slider"
+      class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30" 
+    />
+
+    <div class="slider-line absolute top-0 bottom-0 left-1/2 w-1 bg-white shadow-lg pointer-events-none z-20 transform -translate-x-1/2">
+      <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-8 h-8 bg-white text-slate-900 rounded-full flex items-center justify-center shadow-md font-bold text-xs">
+        ↔
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupSlider() {
+    const container = document.getElementById('before-after-slider');
+    if (!container) return;
+
+    const input = container.querySelector('.slider-input') as HTMLInputElement;
+    const beforeContainer = container.querySelector('.before-image-container') as HTMLDivElement;
+    const beforeImg = container.querySelector('#before-img') as HTMLImageElement;
+    const line = container.querySelector('.slider-line') as HTMLDivElement;
+
+    if (!input || !beforeContainer || !beforeImg || !line) return;
+
+    const updateWidths = () => {
+      const containerWidth = container.offsetWidth;
+      beforeImg.style.width = `${containerWidth}px`;
+    };
+
+    updateWidths();
+    window.addEventListener('resize', updateWidths);
+
+    input.addEventListener('input', (e) => {
+      const val = (e.target as HTMLInputElement).value;
+      beforeContainer.style.width = `${val}%`;
+      line.style.left = `${val}%`;
+    });
+  }
+
+  setupSlider();
+  document.addEventListener('astro:page-load', setupSlider);
+</script>
