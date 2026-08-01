@@ -15,7 +15,7 @@ import siteConfig from '../site-config.json';
       method="POST" 
       class="mt-8 space-y-4"
     >
-      <input type="hidden" name="access_key" value="YOUR_FREE_ACCESS_KEY_HERE" />
+      <input type="hidden" name="access_key" value={siteConfig.web3formsKey} />
       <input type="hidden" name="subject" value={`New Quote Request - ${siteConfig.businessName}`} />
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
